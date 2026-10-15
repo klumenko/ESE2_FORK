@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 
 int main(void) {
@@ -14,7 +15,7 @@ int main(void) {
             return 0;
         }
         if (pid == 0) {
-            printf("Figlio %d", i);
+            printf("Figlio  PID=%d", getpid());
             sleep(2);
             printf("Figlio %d terminato \n", i);
             exit(0);
@@ -23,6 +24,8 @@ int main(void) {
     for (int i = 0; i < 3 ; i++) {
         wait(NULL);
     }
+
+    printf(" Padre: tutti i figli sono terminati");
 
     return 0;
 }
